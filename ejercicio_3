@@ -1,0 +1,30 @@
+class Vehiculo():
+    def Mover(self):
+        raise NotImplementedError("Este metodo debe ser sobreescrito")
+    
+class Coche(Vehiculo):
+    def __init__(self, dueño, velocidad):
+        self._dueño = dueño
+        self._velocidad = velocidad
+    
+    def Mover(self):
+        return(f"{self._dueño} está conduciendo a {self._velocidad}Km/h")
+
+class Bicicleta(Vehiculo):
+    def __init__(self, dueño, velocidad):
+        self._dueño = dueño
+        self._velocidad = velocidad
+    
+    def Mover(self):
+        return(f"{self._dueño} está pedaleando a {self._velocidad}Km/h")
+    
+if __name__ == "__main__":
+    vehiculos = [
+        Coche("Gabriel", 80),
+        Bicicleta("Maria", 5),
+        Coche("Sergio", 50),
+        Bicicleta("Javier", 8)
+    ]
+
+    for vehiculo in vehiculos:
+        print(f"{vehiculo.__class__.__name__}: {vehiculo.Mover()}")
