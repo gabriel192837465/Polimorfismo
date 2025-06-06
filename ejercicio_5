@@ -1,0 +1,32 @@
+class Pago():
+    def procesarPago(self):
+        raise NotImplementedError("este metodo debe ser sobrescrito")
+    
+class TarjetaCredito(Pago):
+    def __init__(self, titular, monto,fecha):
+        self._titular = titular
+        self._fecha = fecha
+        self._monto = monto
+
+    def procesarPago(self):
+        return (f"Su pago con tarjeta fue procesado, recibo:\nTitular: {self._titular}, Monto: ${self._monto} Fecha: {self._fecha}")
+    
+class PayPal(Pago):
+    def __init__(self, cliente, monto, fecha):
+        self._cliente = cliente
+        self._monto = monto
+        self._fecha = fecha
+
+    def procesarPago(self):
+        return (f"Su pago con PayPal fue procesado, recibo:\nCliente: {self._cliente}, Monto: ${self._monto} Fecha: {self._fecha}")
+    
+if __name__ == "__main__":
+    pagos = [
+        TarjetaCredito("Paulo", 60000, "02/06/2025"),
+        PayPal("Nicole", 10000, "27/06/2025"),
+        TarjetaCredito("Anuel", 5000, "12/05/2025"),
+        PayPal("Maria", 10000, "05/06/2025")
+    ]
+
+    for pago in pagos:
+        print(f"{pago.__class__.__name__}: \n{pago.procesarPago()}")
